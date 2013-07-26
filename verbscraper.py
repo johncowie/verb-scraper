@@ -6,7 +6,12 @@ soup = BeautifulSoup(website)
 
 table = soup.table
 trs = list(soup.table.find_all('tr'))
+trsfiltered = []
 for tr in trs:
-	# print tr
 	tds = list(tr.find_all('td'))
-	print tds[0].text
+	if tds[0]['class'][0] == 'tense_heading':
+		trsfiltered.append(tr)
+
+for tr in trsfiltered:
+	tds = list(tr.find_all('td'))
+	print tds[2].text
